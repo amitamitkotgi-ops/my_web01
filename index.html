@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amit's ECE Career Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0f1a;
+    --panel: #111827;
+    --panel2: #1a2234;
+    --accent: #00e5ff;
+    --accent2: #ff6b35;
+    --accent3: #a855f7;
+    --green: #22c55e;
+    --yellow: #facc15;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --border: #1e293b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0a0f1a 0%, #0f172a 50%, #0a1628 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, rgba(0,229,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+  .hero h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(22px, 5vw, 38px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    color: var(--muted);
+    font-size: 14px;
+    max-width: 520px;
+    margin: 0 auto 24px;
+  }
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .badge {
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-family: 'Space Mono', monospace;
+    color: var(--muted);
+  }
+  .badge.hot { border-color: var(--accent); color: var(--accent); }
+
+  /* NAV TABS */
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    padding: 0 16px;
+    gap: 2px;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex-shrink: 0;
+    padding: 14px 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* SECTIONS */
+  .section { display: none; padding: 24px 16px; max-width: 820px; margin: 0 auto; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .icon {
+    width: 28px; height: 28px;
+    background: rgba(0,229,255,0.1);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .card p { color: #94a3b8; font-size: 14px; margin-bottom: 8px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* URGENT SKILLS */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 500px) { .skill-grid { grid-template-columns: 1fr; } }
+  .skill-item {
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .skill-item.urgent { border-color: rgba(255,107,53,0.4); }
+  .skill-item.important { border-color: rgba(168,85,247,0.4); }
+  .skill-item.useful { border-color: rgba(34,197,94,0.3); }
+  .skill-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .urgent .skill-tag { background: rgba(255,107,53,0.15); color: var(--accent2); }
+  .important .skill-tag { background: rgba(168,85,247,0.15); color: var(--accent3); }
+  .useful .skill-tag { background: rgba(34,197,94,0.15); color: var(--green); }
+  .skill-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .skill-desc { font-size: 12px; color: var(--muted); }
+
+  /* SUBJECT LIST */
+  .subject-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .subject-row:last-child { border-bottom: none; }
+  .subject-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    color: var(--accent);
+    font-weight: 700;
+    min-width: 32px;
+    line-height: 1;
+    padding-top: 2px;
+  }
+  .subject-body { flex: 1; }
+  .subject-name { font-weight: 600; font-size: 15px; color: var(--text); margin-bottom: 3px; }
+  .subject-why { font-size: 13px; color: var(--muted); }
+  .priority-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 6px;
+  }
+  .p-high { background: var(--accent2); }
+  .p-med { background: var(--yellow); }
+  .p-low { background: var(--green); }
+
+  /* PROJECTS */
+  .project-card {
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+  }
+  .project-card.tier1::before { background: var(--accent); }
+  .project-card.tier2::before { background: var(--accent3); }
+  .project-card.tier3::before { background: var(--accent2); }
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    gap: 10px;
+  }
+  .project-name { font-weight: 600; font-size: 15px; color: #fff; }
+  .project-level {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .tier1 .project-level { background: rgba(0,229,255,0.15); color: var(--accent); }
+  .tier2 .project-level { background: rgba(168,85,247,0.15); color: var(--accent3); }
+  .tier3 .project-level { background: rgba(255,107,53,0.15); color: var(--accent2); }
+  .project-desc { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+  .tag-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag {
+    font-size: 11px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px 8px;
+    color: #64748b;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* ROUTINE */
+  .day-block { margin-bottom: 20px; }
+  .day-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--accent2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .time-row {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .time-row:last-child { border-bottom: none; }
+  .time-slot {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    min-width: 90px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+  .time-activity { font-size: 13px; color: var(--text); }
+  .time-note { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* MISTAKES */
+  .mistake-item {
+    display: flex;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .mistake-item:last-child { border-bottom: none; }
+  .mistake-x {
+    width: 26px; height: 26px;
+    background: rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .mistake-body { flex: 1; }
+  .mistake-title { font-weight: 600; font-size: 14px; color: #fff; margin-bottom: 3px; }
+  .mistake-fix { font-size: 13px; color: var(--muted); }
+  .fix-label {
+    display: inline;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* 30 DAY PLAN */
+  .week-block { margin-bottom: 20px; }
+  .week-header {
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 8px 8px 0 0;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .week-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+  .week-focus {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .week-tasks {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+  }
+  .task-row {
+    display: flex;
+    gap: 12px;
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .task-row:last-child { border-bottom: none; }
+  .task-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+  .task-text { font-size: 13px; color: #94a3b8; }
+  .task-text strong { color: var(--text); }
+
+  /* INDUSTRY READY */
+  .pillar {
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 14px;
+  }
+  .pillar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .pillar-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .pillar-title { font-weight: 600; font-size: 15px; color: #fff; }
+  .pillar-sub { font-size: 12px; color: var(--muted); }
+  .checklist { list-style: none; }
+  .checklist li {
+    font-size: 13px;
+    color: #94a3b8;
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+    border-bottom: 1px solid rgba(30,41,59,0.5);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+  }
+  .checklist li strong { color: var(--text); }
+
+  /* PROGRESS BAR */
+  .progress-bar {
+    background: var(--border);
+    border-radius: 4px;
+    height: 4px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    transition: width 0.6s ease;
+  }
+
+  /* SECTION TITLE */
+  .sec-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .sec-title span { color: var(--accent); }
+
+  /* CALLOUT */
+  .callout {
+    background: rgba(0,229,255,0.05);
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #94a3b8;
+  }
+  .callout strong { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">Expert Mentor Guide · ECE Career Roadmap</div>
+  <h1>Hey <span>Amit</span> 👋<br>Your Complete Career Blueprint</h1>
+  <p class="hero-sub">4th Semester ECE · KLE Tech · Lateral Entry · Goal: Core Industry Job</p>
+  <div class="badge-row">
+    <span class="badge hot">Signals & Systems</span>
+    <span class="badge hot">Embedded Systems</span>
+    <span class="badge">IoT</span>
+    <span class="badge">Python</span>
+    <span class="badge">ARM</span>
+    <span class="badge">Control Systems</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="show('skills', this)">🔥 Skills</button>
+  <button class="tab" onclick="show('subjects', this)">📚 Subjects</button>
+  <button class="tab" onclick="show('projects', this)">🛠 Projects</button>
+  <button class="tab" onclick="show('routine', this)">⏰ Routine</button>
+  <button class="tab" onclick="show('mistakes', this)">⚠️ Mistakes</button>
+  <button class="tab" onclick="show('plan30', this)">📅 30-Day Plan</button>
+  <button class="tab" onclick="show('industry', this)">🏭 Industry Ready</button>
+</div>
+
+<!-- SKILLS -->
+<div class="section active" id="skills">
+  <div class="sec-title"><span>//</span> Skills You Urgently Need</div>
+
+  <div class="callout">
+    Amit, you are in the <strong>best time</strong> to build skills. You already know Control Systems, Signals, ARM, and Op-Amps. Now you must combine these with <strong>software + hardware skills</strong> to stand out in core ECE interviews.
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">⚡</div> TIER 1 — URGENT (Start This Week)</div>
+    <div class="skill-grid">
+      <div class="skill-item urgent">
+        <div class="skill-tag">Urgent</div>
+        <div class="skill-name">Embedded C / C++</div>
+        <div class="skill-desc">Most core ECE companies test this. Learn GPIO, timers, interrupts, UART. Practice on STM32 or Arduino first.</div>
+      </div>
+      <div class="skill-item urgent">
+        <div class="skill-tag">Urgent</div>
+        <div class="skill-name">Python for ECE</div>
+        <div class="skill-desc">Signal processing with NumPy, SciPy, Matplotlib. You already do stem plots — build on this now.</div>
+      </div>
+      <div class="skill-item urgent">
+        <div class="skill-tag">Urgent</div>
+        <div class="skill-name">Circuit Design Basics</div>
+        <div class="skill-desc">Learn to read and draw schematics. Practice on EasyEDA or Falstad simulator (free, online).</div>
+      </div>
+      <div class="skill-item urgent">
+        <div class="skill-tag">Urgent</div>
+        <div class="skill-name">Git & GitHub</div>
+        <div class="skill-desc">Every tech company checks GitHub. Start putting your projects and lab work here. 10 mins to learn basics.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">🚀</div> TIER 2 — IMPORTANT (This Month)</div>
+    <div class="skill-grid">
+      <div class="skill-item important">
+        <div class="skill-tag">Important</div>
+        <div class="skill-name">IoT Protocols</div>
+        <div class="skill-desc">MQTT, HTTP, I2C, SPI, UART. Your Smart Energy Meter project already uses some — go deeper.</div>
+      </div>
+      <div class="skill-item important">
+        <div class="skill-tag">Important</div>
+        <div class="skill-name">MATLAB / Simulink</div>
+        <div class="skill-desc">Many core companies and all R&D labs use MATLAB. Learn signal simulation and control system modeling.</div>
+      </div>
+      <div class="skill-item important">
+        <div class="skill-tag">Important</div>
+        <div class="skill-name">PCB Design (KiCad)</div>
+        <div class="skill-desc">Free, industry-used tool. Even knowing basics sets you apart in hardware interviews.</div>
+      </div>
+      <div class="skill-item important">
+        <div class="skill-tag">Important</div>
+        <div class="skill-name">Linux + Command Line</div>
+        <div class="skill-desc">Embedded Linux is used in IoT and industrial systems. Learn basic Linux commands and shell scripting.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">🌱</div> TIER 3 — BUILD OVER TIME (Next 6 Months)</div>
+    <div class="skill-grid">
+      <div class="skill-item useful">
+        <div class="skill-tag">Useful</div>
+        <div class="skill-name">Edge AI / TinyML</div>
+        <div class="skill-desc">Running AI on microcontrollers. Very hot skill. Learn TensorFlow Lite on Arduino or ESP32.</div>
+      </div>
+      <div class="skill-item useful">
+        <div class="skill-tag">Useful</div>
+        <div class="skill-name">RTOS Basics</div>
+        <div class="skill-desc">FreeRTOS is used in almost every product. Learn task creation, queues, and semaphores.</div>
+      </div>
+      <div class="skill-item useful">
+        <div class="skill-tag">Useful</div>
+        <div class="skill-name">Communication Systems</div>
+        <div class="skill-desc">AM/FM modulation, noise, BER — important for telecom and semiconductor companies.</div>
+      </div>
+      <div class="skill-item useful">
+        <div class="skill-tag">Useful</div>
+        <div class="skill-name">VLSI Basics (Verilog)</div>
+        <div class="skill-desc">For semiconductor companies like Intel, AMD, Texas Instruments. Even basic knowledge helps.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUBJECTS -->
+<div class="section" id="subjects">
+  <div class="sec-title"><span>//</span> Subjects to Focus On</div>
+
+  <div class="callout">
+    Core ECE companies — ISRO, DRDO, Texas Instruments, Qualcomm, Bosch, L&T — test your <strong>fundamentals deeply</strong>. Strong subject knowledge = strong interview performance.
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">📌</div> Priority Order for Your Semester</div>
+
+    <div class="subject-row">
+      <div class="subject-num">01</div>
+      <div class="subject-body">
+        <div class="subject-name">Signals and Systems</div>
+        <div class="subject-why">Most important ECE subject. Used in every job interview. Fourier, Laplace, Z-transform, convolution — master all of these. You are already practicing — keep going!</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+      </div>
+      <div class="priority-dot p-high"></div>
+    </div>
+
+    <div class="subject-row">
+      <div class="subject-num">02</div>
+      <div class="subject-body">
+        <div class="subject-name">Control Systems</div>
+        <div class="subject-why">Used in automation, robotics, defense, automotive industries. Block diagrams, transfer functions, Bode plots — practice numericals daily. GATE also tests this heavily.</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+      </div>
+      <div class="priority-dot p-high"></div>
+    </div>
+
+    <div class="subject-row">
+      <div class="subject-num">03</div>
+      <div class="subject-body">
+        <div class="subject-name">Analog Electronics (Op-Amps)</div>
+        <div class="subject-why">Op-amp circuits appear in every hardware interview. Your inverting, non-inverting, and instrumentation amp knowledge is excellent — now link it to real applications.</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
+      </div>
+      <div class="priority-dot p-high"></div>
+    </div>
+
+    <div class="subject-row">
+      <div class="subject-num">04</div>
+      <div class="subject-body">
+        <div class="subject-name">ARM Architecture & Embedded Systems</div>
+        <div class="subject-why">You already know ARM basics (CPSR, pipeline, assembly). Now go one step further — write real embedded C code for an STM32 or Raspberry Pi Pico.</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:55%"></div></div>
+      </div>
+      <div class="priority-dot p-med"></div>
+    </div>
+
+    <div class="subject-row">
+      <div class="subject-num">05</div>
+      <div class="subject-body">
+        <div class="subject-name">C Programming</div>
+        <div class="subject-why">Almost all embedded companies test C very seriously — pointers, memory, structures, bitwise operations. Practice 1 C problem daily on platforms like HackerRank.</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div>
+      </div>
+      <div class="priority-dot p-med"></div>
+    </div>
+
+    <div class="subject-row">
+      <div class="subject-num">06</div>
+      <div class="subject-body">
+        <div class="subject-name">Digital Electronics</div>
+        <div class="subject-why">Logic gates, flip-flops, counters, FSM. This is tested in almost every core company written test. Don't skip it even if it was in lower semesters.</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
+      </div>
+      <div class="priority-dot p-low"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section" id="projects">
+  <div class="sec-title"><span>//</span> Best Projects for Your Profile</div>
+
+  <div class="callout">
+    Good projects = <strong>job magnet</strong>. Always choose projects that combine hardware + software + real-world use. These projects will be the stories you tell in interviews.
+  </div>
+
+  <div class="project-card tier1">
+    <div class="project-header">
+      <div class="project-name">🌡 Smart IoT Environment Monitor</div>
+      <div class="project-level">START NOW</div>
+    </div>
+    <div class="project-desc">Build on your thermistor knowledge. Monitor temperature, humidity, air quality using ESP32. Display on a web dashboard. Send WhatsApp/email alerts when values cross limits. Store data to Google Sheets or ThingSpeak.</div>
+    <div class="tag-row">
+      <span class="tag">ESP32</span><span class="tag">MQTT</span><span class="tag">Python</span><span class="tag">IoT</span><span class="tag">Sensors</span>
+    </div>
+  </div>
+
+  <div class="project-card tier1">
+    <div class="project-header">
+      <div class="project-name">⚡ Smart Energy Meter (Advanced)</div>
+      <div class="project-level">UPGRADE EXISTING</div>
+    </div>
+    <div class="project-desc">Your existing Smart Energy Meter project is great — now add: real-time power monitoring on phone, billing calculation, appliance-level tracking, and anomaly detection using simple ML. This becomes a strong portfolio piece.</div>
+    <div class="tag-row">
+      <span class="tag">ZMPT101B</span><span class="tag">ACS712</span><span class="tag">ESP32</span><span class="tag">Cloud</span><span class="tag">ML</span>
+    </div>
+  </div>
+
+  <div class="project-card tier2">
+    <div class="project-header">
+      <div class="project-name">🔊 DSP Signal Analyzer (Python)</div>
+      <div class="project-level">NEXT MONTH</div>
+    </div>
+    <div class="project-desc">Use your Signals & Systems knowledge to build a Python tool that takes an audio signal, performs FFT, shows frequency spectrum, applies filters (low-pass, high-pass), and reconstructs the signal. Show this in Resonance hackathon too.</div>
+    <div class="tag-row">
+      <span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">FFT</span><span class="tag">Matplotlib</span><span class="tag">Audio</span>
+    </div>
+  </div>
+
+  <div class="project-card tier2">
+    <div class="project-header">
+      <div class="project-name">🤖 Line Follower Robot with PID Control</div>
+      <div class="project-level">NEXT MONTH</div>
+    </div>
+    <div class="project-desc">Combines Control Systems theory with embedded coding. Program a PID controller in C on Arduino or STM32 to control motor speed. Very popular in core companies and robotics interviews. Great hackathon project too.</div>
+    <div class="tag-row">
+      <span class="tag">PID</span><span class="tag">Embedded C</span><span class="tag">STM32/Arduino</span><span class="tag">Control Systems</span>
+    </div>
+  </div>
+
+  <div class="project-card tier3">
+    <div class="project-header">
+      <div class="project-name">🧠 TinyML on Microcontroller</div>
+      <div class="project-level">6 MONTHS</div>
+    </div>
+    <div class="project-desc">Run a gesture detection or keyword recognition model on ESP32 or Arduino Nano 33. This combines AI + Embedded + Signal Processing — a very rare and highly valued skill combination for freshers.</div>
+    <div class="tag-row">
+      <span class="tag">TensorFlow Lite</span><span class="tag">ESP32</span><span class="tag">Edge AI</span><span class="tag">Python</span>
+    </div>
+  </div>
+</div>
+
+<!-- ROUTINE -->
+<div class="section" id="routine">
+  <div class="sec-title"><span>//</span> Daily Routine for Career Growth</div>
+
+  <div class="callout">
+    Amit, <strong>consistency beats intensity</strong>. You don't need 12 hours every day. Even 4-5 focused hours daily can make you industry-ready in 6 months. Follow this routine on college days.
+  </div>
+
+  <div class="card">
+    <div class="day-label">⏰ College Day Routine (Mon–Fri)</div>
+    <div class="time-row">
+      <div class="time-slot">5:30 – 6:00 AM</div>
+      <div>
+        <div class="time-activity">Wake up + Quick English Practice</div>
+        <div class="time-note">Read 1 news article in English. Write 3 sentences about it in your notebook. This builds fluency fast.</div>
+      </div>
+    </div>
+    <div class="time-row">
+      <div class="time-slot">6:00 – 7:00 AM</div>
+      <div>
+        <div class="time-activity">Study 1 Subject Topic</div>
+        <div class="time-note">Pick one topic — like Z-transform or op-amp — and solve 2-3 numerical problems from scratch.</div>
+      </div>
+    </div>
+    <div class="time-row">
+      <div class="time-slot">College Hours</div>
+      <div>
+        <div class="time-activity">Attend all classes + ask 1 doubt per subject</div>
+        <div class="time-note">Even if you know the topic, asking questions builds your communication and shows initiative to teachers.</div>
+      </div>
+    </div>
+    <div class="time-row">
+      <div class="time-slot">6:00 – 7:30 PM</div>
+      <div>
+        <div class="time-activity">Coding / Project Work</div>
+        <div class="time-note">Alternate days: Embedded C / Python. Work on your active project. Even 30 lines of real code per day is great.</div>
+      </div>
+    </div>
+    <div class="time-row">
+      <div class="time-slot">8:00 – 9:00 PM</div>
+      <div>
+        <div class="time-activity">Review + GitHub + English</div>
+        <div class="time-note">Push your code to GitHub. Write a short diary entry in English (3–5 sentences). This builds writing fluency.</div>
+      </div>
+    </div>
+    <div class="time-row">
+      <div class="time-slot">9:00 PM onward</div>
+      <div>
+        <div class="time-activity">Rest, movies, Instagram, relax</div>
+        <div class="time-note">You deserve rest! Watch Money Heist or post on Instagram. No guilt — rest is part of the plan.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="day-label">🌅 Weekend Routine (Sat–Sun)</div>
+    <div class="time-row">
+      <div class="time-slot">Sat Morning</div>
+      <div>
+        <div class="time-activity">Deep Study Session (2–3 hrs)</div>
+        <div class="time-note">Pick one weak subject and go deep. Solve previous ISA/IAS question papers end-to-end.</div>
+      </div>
+    </div>
+    <div class="time-row">
+      <div class="time-slot">Sat Afternoon</div>
+      <div>
+        <div class="time-activity">Project Building (2 hrs)</div>
+        <div class="time-note">Add one new feature to your IoT or DSP project. Test it and document what you did.</div>
+      </div>
+    </div>
+    <div class="time-row">
+      <div class="time-slot">Sun Morning</div>
+      <div>
+        <div class="time-activity">English Communication Practice</div>
+        <div class="time-note">Record yourself speaking for 2 minutes on any topic. Play it back, notice your mistakes, improve.</div>
+      </div>
+    </div>
+    <div class="time-row">
+      <div class="time-slot">Sun Afternoon</div>
+      <div>
+        <div class="time-activity">Learn 1 New Concept + Nature Photography</div>
+        <div class="time-note">Watch 1 YouTube video on a new ECE topic (30 min). Then go outside, recharge. Balance is everything.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MISTAKES -->
+<div class="section" id="mistakes">
+  <div class="sec-title"><span>//</span> Common Mistakes — Avoid These</div>
+
+  <div class="callout">
+    These are the mistakes that stop good ECE students from getting good jobs. You are smart enough to avoid them now — before it is too late.
+  </div>
+
+  <div class="card">
+    <div class="mistake-item">
+      <div class="mistake-x">✗</div>
+      <div class="mistake-body">
+        <div class="mistake-title">Studying only for exams, forgetting after</div>
+        <div class="mistake-fix"><span class="fix-label">Fix →</span> After each exam, write a 1-page summary of what you learned. This becomes your revision notes later.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-x">✗</div>
+      <div class="mistake-body">
+        <div class="mistake-title">Zero projects on GitHub or portfolio</div>
+        <div class="mistake-fix"><span class="fix-label">Fix →</span> Even uploading your ISA solution code or lab programs counts. Start your GitHub profile this week.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-x">✗</div>
+      <div class="mistake-body">
+        <div class="mistake-title">Learning theory without building anything</div>
+        <div class="mistake-fix"><span class="fix-label">Fix →</span> Every concept you study, try to simulate it. Learn op-amp? Build it in Falstad simulator. Learn control? Simulate in Python.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-x">✗</div>
+      <div class="mistake-body">
+        <div class="mistake-title">Waiting to be "ready" before starting English</div>
+        <div class="mistake-fix"><span class="fix-label">Fix →</span> Start speaking imperfect English today. Mistakes are the fastest teachers. Write 3 English sentences daily in a diary.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-x">✗</div>
+      <div class="mistake-body">
+        <div class="mistake-title">Not knowing what kind of job you want</div>
+        <div class="mistake-fix"><span class="fix-label">Fix →</span> Research 3 companies (Bosch, Texas Instruments, ISRO) and read their job descriptions. This tells you exactly what skills to build.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-x">✗</div>
+      <div class="mistake-body">
+        <div class="mistake-title">Skipping basics to learn "cool" advanced topics</div>
+        <div class="mistake-fix"><span class="fix-label">Fix →</span> Companies test fundamentals hard. A student who knows C pointers deeply is valued more than one who "tried" machine learning.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-x">✗</div>
+      <div class="mistake-body">
+        <div class="mistake-title">Doing everything alone, not networking</div>
+        <div class="mistake-fix"><span class="fix-label">Fix →</span> Connect with seniors who got ECE jobs. Follow ECE engineers on LinkedIn. Join telegram groups for embedded systems.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 30-DAY PLAN -->
+<div class="section" id="plan30">
+  <div class="sec-title"><span>//</span> 30-Day Action Plan</div>
+
+  <div class="callout">
+    This plan is designed for you, Amit — balancing your <strong>ISA exams, Resonance hackathon (April 2026), and skill building</strong>. Follow it one day at a time.
+  </div>
+
+  <div class="week-block">
+    <div class="week-header">
+      <div class="week-title">WEEK 1 — DAYS 1–7</div>
+      <div class="week-focus">Foundation Setup</div>
+    </div>
+    <div class="week-tasks">
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 1:</strong> Create a GitHub profile. Upload any 1 existing project or lab code.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 2:</strong> Install VS Code + PlatformIO. Write your first embedded C blink program.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 3:</strong> Revise Z-transform and solve 3 ISA-style problems from scratch (no help).</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 4:</strong> Open Falstad circuit simulator. Rebuild your inverting op-amp circuit and measure output.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 5:</strong> Research Bosch, Texas Instruments job postings. Write down 5 skills they want.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 6–7:</strong> Plan your Resonance hackathon project idea. Finalize components needed. Register before April 5.</div></div>
+    </div>
+  </div>
+
+  <div class="week-block">
+    <div class="week-header">
+      <div class="week-title">WEEK 2 — DAYS 8–14</div>
+      <div class="week-focus">Coding + Project Start</div>
+    </div>
+    <div class="week-tasks">
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 8–9:</strong> Learn C pointers, arrays, structures deeply. Solve 5 C problems on HackerRank.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 10:</strong> Start IoT Environment Monitor project — connect DHT11/22 sensor to ESP32. Get readings.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 11:</strong> Revise Control Systems — block diagram reduction and transfer function numericals.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 12:</strong> Write a Python program using NumPy to plot an audio signal's FFT (use any .wav file).</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 13–14:</strong> Work on hackathon project prototype. Test hardware. Document in a README file.</div></div>
+    </div>
+  </div>
+
+  <div class="week-block">
+    <div class="week-header">
+      <div class="week-title">WEEK 3 — DAYS 15–21</div>
+      <div class="week-focus">Depth + English + ISA Prep</div>
+    </div>
+    <div class="week-tasks">
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 15:</strong> Solve 1 full ISA paper for Signals & Systems under time pressure. Check your answers.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 16:</strong> Add Wi-Fi data upload (ThingSpeak or Google Sheets) to your IoT monitor project.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 17:</strong> Record a 2-minute video of yourself explaining your Energy Meter project in English. Review it.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 18–19:</strong> Deep dive into ARM — rewrite your assembly program, understand pipeline stages with diagrams.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 20–21:</strong> Complete Resonance hackathon project. Prepare your 2-minute pitch and demo. Practice it.</div></div>
+    </div>
+  </div>
+
+  <div class="week-block">
+    <div class="week-header">
+      <div class="week-title">WEEK 4 — DAYS 22–30</div>
+      <div class="week-focus">Portfolio + Review + Plan Next Month</div>
+    </div>
+    <div class="week-tasks">
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 22:</strong> Write a proper README for all your GitHub projects. Add photos and circuit diagrams.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 23:</strong> Create a LinkedIn profile (if not done). Add education, skills, and 2 projects.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 24–25:</strong> Solve full ISA papers for Control Systems and Analog Electronics. Note weak areas.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 26–27:</strong> Start learning MATLAB basics — plot a step response of a first-order system you already know.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 28:</strong> Talk to 1 senior who has a core ECE job or internship. Ask them what they wish they had learned.</div></div>
+      <div class="task-row"><div class="task-dot"></div><div class="task-text"><strong>Day 29–30:</strong> Review what you built this month. Write your plan for the next 30 days. Celebrate your progress! 🎉</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- INDUSTRY READY -->
+<div class="section" id="industry">
+  <div class="sec-title"><span>//</span> How to Become Industry-Ready</div>
+
+  <div class="callout">
+    Industry-ready means: you can <strong>walk into an interview room and confidently answer</strong> both technical questions and HR questions. Here is exactly how to get there.
+  </div>
+
+  <div class="pillar">
+    <div class="pillar-header">
+      <div class="pillar-icon" style="background:rgba(0,229,255,0.1);">📐</div>
+      <div>
+        <div class="pillar-title">Strong Technical Foundation</div>
+        <div class="pillar-sub">The base of everything</div>
+      </div>
+    </div>
+    <ul class="checklist">
+      <li><strong>Signals & Systems:</strong> Know Fourier, Laplace, Z-transform, convolution by heart</li>
+      <li><strong>Control Systems:</strong> Solve block diagrams, Bode plots, stability analysis confidently</li>
+      <li><strong>Analog Electronics:</strong> Explain every op-amp configuration with derivation</li>
+      <li><strong>Digital Electronics:</strong> Revise logic gates, flip-flops, counters, FSM — these appear in written tests</li>
+      <li><strong>C Programming:</strong> Master pointers, bit manipulation, structures, memory — very heavily tested</li>
+    </ul>
+  </div>
+
+  <div class="pillar">
+    <div class="pillar-header">
+      <div class="pillar-icon" style="background:rgba(168,85,247,0.1);">🔧</div>
+      <div>
+        <div class="pillar-title">Hands-On Hardware + Software Skills</div>
+        <div class="pillar-sub">What differentiates you from 90% of students</div>
+      </div>
+    </div>
+    <ul class="checklist">
+      <li>Build at least <strong>2 complete working projects</strong> with hardware + software + documentation</li>
+      <li>Know how to use an oscilloscope, multimeter, and signal generator (lab skills matter)</li>
+      <li>Write clean, commented Embedded C code for a microcontroller</li>
+      <li>Use Python to simulate and analyze signals — connect theory to code</li>
+      <li>Know at least one PCB design tool (KiCad or EasyEDA) at a basic level</li>
+    </ul>
+  </div>
+
+  <div class="pillar">
+    <div class="pillar-header">
+      <div class="pillar-icon" style="background:rgba(255,107,53,0.1);">💼</div>
+      <div>
+        <div class="pillar-title">Job-Ready Portfolio</div>
+        <div class="pillar-sub">Your proof of work</div>
+      </div>
+    </div>
+    <ul class="checklist">
+      <li>GitHub profile with <strong>at least 3 real projects</strong> — not just assignments</li>
+      <li>LinkedIn profile with education, skills, projects, and a good photo</li>
+      <li>A 1-page clean resume with projects, skills, and academic performance</li>
+      <li>Be able to explain each project in 2 minutes confidently in English</li>
+      <li>Participate in at least 1 hackathon per semester (Resonance is a great start!)</li>
+    </ul>
+  </div>
+
+  <div class="pillar">
+    <div class="pillar-header">
+      <div class="pillar-icon" style="background:rgba(34,197,94,0.1);">🗣</div>
+      <div>
+        <div class="pillar-title">Communication & Soft Skills</div>
+        <div class="pillar-sub">Often the deciding factor in interviews</div>
+      </div>
+    </div>
+    <ul class="checklist">
+      <li>Practice explaining technical topics in simple English — like you're teaching a friend</li>
+      <li>Record yourself speaking for 2 minutes, listen back, improve week by week</li>
+      <li>Read 1 English article daily (The Hindu, BBC, or any tech blog)</li>
+      <li>Practice answering "Tell me about yourself" and "Why do you want this job?" out loud</li>
+      <li>Your mini story writing hobby is your strength — use it to build English creativity</li>
+    </ul>
+  </div>
+
+  <div class="pillar">
+    <div class="pillar-header">
+      <div class="pillar-icon" style="background:rgba(250,204,21,0.1);">🎯</div>
+      <div>
+        <div class="pillar-title">Career Strategy</div>
+        <div class="pillar-sub">Work smart, not just hard</div>
+      </div>
+    </div>
+    <ul class="checklist">
+      <li>Target companies early: Bosch, Honeywell, Qualcomm, L&T, ISRO, DRDO, Texas Instruments</li>
+      <li>Consider GATE after graduation — it opens PSU jobs (BHEL, BSNL, BEL, ONGC) with great salary</li>
+      <li>Apply for internships from 5th semester onwards — even unpaid ones give real experience</li>
+      <li>Follow 5 ECE engineers on LinkedIn — see what skills they have and what companies want</li>
+      <li>Your AI podcast idea is excellent for personal branding — even ECE recruiters notice this</li>
+    </ul>
+  </div>
+
+  <div class="card" style="margin-top:8px;">
+    <div class="card-title"><div class="icon">⭐</div> Final Message from Your Mentor</div>
+    <p>Amit, you have entered engineering through lateral entry, which means you already have more practical focus than direct-entry students. That is your <strong>hidden strength</strong>.</p>
+    <p>You are studying Control Systems, Signals, ARM, and Op-Amps — the exact subjects core companies test. You have already built a Smart Energy Meter and worked with thermistors. You are ahead of many students.</p>
+    <p>The only thing between you and a great ECE job is <strong>consistency + projects + confidence in English</strong>. Start one step today. Don't wait for the perfect moment. The students who get the best jobs are not the smartest — they are the most <em>consistent and prepared</em>. That can be you. 🚀</p>
+  </div>
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
